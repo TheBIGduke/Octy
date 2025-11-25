@@ -46,4 +46,4 @@ VARIANTS_WAKE_WORD =  ["ok robot", "okay robot", "hey robot"] #variations
 
 """"Use Avatar"""
 AVATAR = True #If you want to use the avatar
-OCTOP_ID = "OctoV" # Options: "OctoV" (Orb) | "face" (Face)
+OCTOP_ID = "face " # Options: "OctoV" (Orb) | "face" (Face)
