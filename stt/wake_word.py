@@ -8,7 +8,7 @@ from collections import deque
 
 from config.settings import (
     MIN_SILENCE_MS_TO_DRAIN_STT, ACTIVATION_PHRASE_WAKE_WORD, LISTEN_SECONDS_STT, 
-    AUDIO_LISTENER_SAMPLE_RATE, VARIANTS_WAKE_WORD, AUDIO_LISTENER_CHANNELS, AVATAR
+    AUDIO_LISTENER_SAMPLE_RATE, VARIANTS_WAKE_WORD, AUDIO_LISTENER_CHANNELS, AVATAR, OCTOP_ID
 )
 
 if AVATAR:
@@ -59,7 +59,12 @@ class WakeWord:
         #Initialize Avatar Server if needed
         if AVATAR:
             subprocess.Popen([sys.executable, "-m", "avatar.avatar_server"], stdin=subprocess.DEVNULL, stdout = subprocess.PIPE, stderr = subprocess.PIPE, text=True)
-            webbrowser.open(Path("avatar/OctoV.html").resolve().as_uri(), new=0, autoraise=True)
+            
+            # Dynamic selection
+            if OCTOP_ID == "face":
+                webbrowser.open(Path("OctopID/face.html").resolve().as_uri(), new=0, autoraise=True)
+            else:
+                webbrowser.open(Path("avatar/OctoV.html").resolve().as_uri(), new=0, autoraise=True)
 
     def wake_word_detector(self, frame: bytes) -> None | bytes:
         """Process one 10 ms PCM int16 mono frame for wake-word detection.
